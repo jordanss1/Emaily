@@ -5,7 +5,11 @@ import { connect } from "mongoose";
 import "./models/User";
 import "./services/passport";
 
-connect(mongoURI);
+const environment = process.env.NODE_ENV || "development";
+
+connect(
+  environment === "production" ? (process.env.mongoURI as string) : mongoURI
+);
 
 const app: Express = express();
 

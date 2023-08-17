@@ -1,6 +1,7 @@
-const passport = require("passport");
+import { Express } from "express";
+import passport from "passport";
 
-module.exports = (app) => {
+export const googleAuthRoutes = (app: Express) => {
   app.get(
     "/auth/google",
     passport.authenticate("google", { scope: ["profile", "email"] })

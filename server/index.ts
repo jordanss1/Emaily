@@ -1,13 +1,26 @@
 import express, { Express } from "express";
+import passport from "passport";
 import { googleAuthRoutes } from "./routes/authRoutes";
-// import { mongoURI } from "./config/keys";
+import { cookieKey, mongoURI } from "./config/keys";
 import { connect } from "mongoose";
+import cookieSession from "cookie-session";
 import "./models/User";
 import "./services/passport";
 
-connect(process.env.mongoURI as string);
+connect(mongoURI);
 
 const app: Express = express();
+
+app.use(
+  cookieSession({
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    keys: [cookieKey],
+  })
+);
+
+app.use(passport.initialize());
+
+app.use(passport.session());
 
 googleAuthRoutes(app);
 

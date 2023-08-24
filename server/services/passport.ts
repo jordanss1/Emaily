@@ -1,8 +1,10 @@
 import passport from "passport";
+import keys from "../config/keys";
 import { model } from "mongoose";
 import { Strategy } from "passport-google-oauth20";
-import { googleClientID, googleClientSecret } from "../config/keys";
 import { UserType } from "../models/User";
+
+const { googleClientID, googleClientSecret } = keys;
 
 const GoogleStrategy = Strategy;
 

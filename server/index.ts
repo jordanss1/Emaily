@@ -1,11 +1,13 @@
 import express, { Express } from "express";
 import passport from "passport";
 import { googleAuthRoutes } from "./routes/authRoutes";
-import { cookieKey, mongoURI } from "./config/keys";
+import keys from "./config/keys";
 import { connect } from "mongoose";
 import cookieSession from "cookie-session";
 import "./models/User";
 import "./services/passport";
+
+const { mongoURI, cookieKey } = keys;
 
 connect(mongoURI);
 

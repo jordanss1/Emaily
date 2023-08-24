@@ -9,8 +9,8 @@
   },
   "scripts": {
     "build": "npx tsc",
-    "start": "ts-node index.ts",
-    "dev": "nodemon index.ts"
+    "start": "ts-node ./src/index.ts",
+    "dev": "nodemon ./src/index.ts"
   },
   "author": "",
   "license": "ISC",

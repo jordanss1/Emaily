@@ -11,10 +11,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
-    "outDir": "./dist",
+    "outDir": "./src/dist",
     "typeRoots": ["types.d.ts", "./node_modules/@types"],
     /* Linting */
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["*.ts", "../server"]
+  "exclude": ["./src/dist"],
+  "include": ["*.ts", "./src"]
 }

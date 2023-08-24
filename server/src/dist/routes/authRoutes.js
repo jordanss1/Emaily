@@ -8,5 +8,12 @@ const passport_1 = __importDefault(require("passport"));
 const googleAuthRoutes = (app) => {
     app.get("/auth/google", passport_1.default.authenticate("google", { scope: ["profile", "email"] }));
     app.get("/auth/google/callback", passport_1.default.authenticate("google"));
+    app.get("/api/logout", (req, res) => {
+        req.logOut({}, () => { });
+        res.send(req.user);
+    });
+    app.get("/api/current_user", (req, res) => {
+        res.send(req.user);
+    });
 };
 exports.googleAuthRoutes = googleAuthRoutes;

@@ -30,6 +30,7 @@ passport_1.default.use(new GoogleStrategy({
     clientID: googleClientID,
     clientSecret: googleClientSecret,
     callbackURL: "/auth/google/callback",
+    proxy: true,
 }, (accessToken, refreshToken, profile, done) => __awaiter(void 0, void 0, void 0, function* () {
     const existingUser = yield User.findOne({ googleId: profile.id });
     if (existingUser) {

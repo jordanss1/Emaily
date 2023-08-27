@@ -1,7 +1,7 @@
-import passport from "passport";
-import keys from "../config/keys";
 import { model } from "mongoose";
+import passport from "passport";
 import { Strategy } from "passport-google-oauth20";
+import keys from "../config/keys";
 import { UserType } from "../models/User";
 
 const { googleClientID, googleClientSecret } = keys;
@@ -31,8 +31,7 @@ passport.use(
       const existingUser = await User.findOne({ googleId: profile.id });
 
       if (existingUser) {
-        done(null, existingUser);
-        return;
+        return done(null, existingUser);
       }
 
       const newUser = await new User<UserType>({

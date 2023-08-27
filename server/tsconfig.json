@@ -16,6 +16,6 @@
     /* Linting */
     "noFallthroughCasesInSwitch": true
   },
-  "exclude": ["./src/dist"],
+  "exclude": ["./src/dist", "./client/src/setupProxy.js"],
   "include": ["*.ts", "./src"]
 }

@@ -1,3 +1,4 @@
+import "materialize-css/dist/css/materialize.min.css";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";

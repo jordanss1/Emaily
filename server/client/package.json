@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
+    "axios": "^1.5.0",
     "http-proxy-middleware": "^2.0.6",
     "materialize-css": "^1.0.0",
     "react": "^18.2.0",

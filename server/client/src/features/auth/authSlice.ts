@@ -10,12 +10,12 @@ import { User } from "../../types";
 
 export const fetchUser = createAsyncThunk(
   "auth/fetchUser",
-  async (): Promise<User> => {
+  async (): Promise<User | undefined> => {
     return await axiosFetchUser();
   }
 );
 
-type AuthStateType = { user: User };
+type AuthStateType = { user: User | false | null };
 
 const initialState: AuthStateType = { user: null };
 
@@ -33,25 +33,15 @@ export const authSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-
       .addMatcher(
         (action: PayloadAction<User>) => action.type.includes("auth/fetchUser"),
         (state, action) =>
           reducerMatcherFunction(action, () => {
-            state.user = action.payload;
+            state.user = action.payload || false;
           })
       )
 
-      .addDefaultCase((state, action) => {
-        const casesToIgnore = ["@@redux", "@@INIT"];
-
-        const executeDefaultCase = casesToIgnore.some(
-          (string) => !action.type.includes(string)
-        );
-
-        if (executeDefaultCase)
-          console.log("MUST CREATE MATCHER/CASE FOR THIS ACTION");
-      });
+      .addDefaultCase((state, action) => state);
   },
 });
 

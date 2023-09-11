@@ -2,11 +2,12 @@ import { ReactElement } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { authSelector } from "../features/auth/authSlice";
+import Payments from "./Payments";
 
 const Header = (): ReactElement => {
   const { user } = useSelector(authSelector);
 
-  const renderButton = (): ReactElement | undefined => {
+  const renderContent = (): ReactElement | undefined => {
     switch (user) {
       case null:
         return;
@@ -20,9 +21,14 @@ const Header = (): ReactElement => {
 
       default:
         return (
-          <li>
-            <a href="/api/logout">Logout</a>
-          </li>
+          <>
+            <li>
+              <Payments />
+            </li>
+            <li>
+              <a href="/api/logout">Logout</a>
+            </li>
+          </>
         );
     }
   };
@@ -37,7 +43,7 @@ const Header = (): ReactElement => {
         >
           Emaily
         </Link>
-        <ul className="right">{renderButton()}</ul>
+        <ul className="right">{renderContent()}</ul>
       </div>
     </nav>
   );

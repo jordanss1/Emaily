@@ -1,17 +1,10 @@
-import devKeys from "./dev";
+import devKeys, { KeysType } from "./dev";
 import prodKeys from "./prod";
 
-interface IKeys {
-  mongoURI: string;
-  cookieKey: string;
-  googleClientID: string;
-  googleClientSecret: string;
-}
-
-let keys: IKeys;
+let keys: KeysType;
 
 if (process.env.NODE_ENV === "production") {
-  keys = prodKeys as IKeys;
+  keys = prodKeys as KeysType;
 } else {
   keys = devKeys;
 }

@@ -4,7 +4,8 @@ import {
   createSlice,
   PayloadAction,
 } from "@reduxjs/toolkit";
-import { axiosFetchUser } from "../../api";
+import { Token } from "react-stripe-checkout";
+import { axiosFetchUser, axiosSendToken } from "../../api";
 import { StateType } from "../../app/store";
 import { User } from "../../types";
 
@@ -12,6 +13,13 @@ export const fetchUser = createAsyncThunk(
   "auth/fetchUser",
   async (): Promise<User | undefined> => {
     return await axiosFetchUser();
+  }
+);
+
+export const handleToken = createAsyncThunk(
+  "auth/fetchUser",
+  async (token: Token): Promise<User> => {
+    return await axiosSendToken(token);
   }
 );
 

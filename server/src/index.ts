@@ -1,10 +1,12 @@
-import express, { Express } from "express";
-import passport from "passport";
-import { googleAuthRoutes } from "./routes/authRoutes";
-import keys from "./config/keys";
-import { connect } from "mongoose";
+import bodyParser from "body-parser";
 import cookieSession from "cookie-session";
+import express, { Express } from "express";
+import { connect } from "mongoose";
+import passport from "passport";
+import keys from "./config/keys";
 import "./models/User";
+import { googleAuthRoutes } from "./routes/authRoutes";
+import { billingRoutes } from "./routes/billingRoutes";
 import "./services/passport";
 
 const { mongoURI, cookieKey } = keys;
@@ -12,6 +14,8 @@ const { mongoURI, cookieKey } = keys;
 connect(mongoURI);
 
 const app: Express = express();
+
+app.use(bodyParser.json());
 
 app.use(
   cookieSession({
@@ -23,6 +27,8 @@ app.use(
 app.use(passport.initialize());
 
 app.use(passport.session());
+
+billingRoutes(app);
 
 googleAuthRoutes(app);
 

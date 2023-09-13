@@ -38,6 +38,7 @@ passport_1.default.use(new GoogleStrategy({
     }
     const newUser = yield new User({
         googleId: profile.id,
+        credits: 0,
     }).save();
     done(null, newUser);
 })));

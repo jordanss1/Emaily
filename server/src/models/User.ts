@@ -1,7 +1,8 @@
-import { model, Schema, InferSchemaType } from "mongoose";
+import { InferSchemaType, Schema, model } from "mongoose";
 
 export const userSchema = new Schema({
   googleId: { type: String, required: true },
+  credits: { type: Number, default: 0 },
 });
 
 export type UserType = InferSchemaType<typeof userSchema>;

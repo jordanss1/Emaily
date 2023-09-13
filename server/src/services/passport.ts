@@ -10,7 +10,7 @@ const GoogleStrategy = Strategy;
 
 const User = model<UserType>("users");
 
-passport.serializeUser((user: any, done) => {
+passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
@@ -36,6 +36,7 @@ passport.use(
 
       const newUser = await new User<UserType>({
         googleId: profile.id,
+        credits: 0,
       }).save();
 
       done(null, newUser);

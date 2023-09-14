@@ -1,11 +1,12 @@
 import { Request } from "express";
+import { Document, Model, Models } from "mongoose";
 import { UserType } from "./src/models/User";
 
 export {};
 
 declare global {
   namespace Express {
-    interface User {
+    interface User extends Document {
       id?: string;
       credits?: number;
     }

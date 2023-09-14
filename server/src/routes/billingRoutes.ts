@@ -9,8 +9,6 @@ export const billingRoutes = (app: Express) => {
   app.post("/api/stripe", async (req, res) => {
     assertHasUser(req);
 
-    // let credits = req.user.credits
-
     const charge = await stripe.charges.create({
       amount: 500,
       currency: "USD",
@@ -18,8 +16,10 @@ export const billingRoutes = (app: Express) => {
       source: req.body.id,
     });
 
-    // credits ? (credits += 5) : (credits = 5);
-
     req.user.credits ? (req.user.credits += 5) : (req.user.credits = 5);
+
+    const user = await req.user.save();
+
+    res.send(user);
   });
 };

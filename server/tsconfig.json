@@ -12,7 +12,7 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "outDir": "./src/dist",
-    "typeRoots": ["client/types.d.ts", "./node_modules/@types"],
+    "typeRoots": ["./types.d.ts", "./node_modules/@types"],
     /* Linting */
     "noFallthroughCasesInSwitch": true
   },

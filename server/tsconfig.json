@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "ES6",
     "module": "commonjs",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -10,12 +11,11 @@
     /* Bundler mode */
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "react-jsx",
     "outDir": "./src/dist",
-    "typeRoots": ["./types.d.ts", "./node_modules/@types"],
+    "typeRoots": ["./src/types/express", "./node_modules/@types"],
     /* Linting */
     "noFallthroughCasesInSwitch": true
   },
-  "exclude": ["./src/dist", "./client/src/setupProxy.js"],
-  "include": ["*.ts", "./src"]
+  "include": ["./src/*.ts"],
+  "exclude": ["./src/dist", "./client", "./src/types.ts"]
 }

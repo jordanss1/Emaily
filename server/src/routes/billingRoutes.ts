@@ -1,12 +1,14 @@
-import { Express, Request } from "express";
+import { Express } from "express";
 import Stripe from "stripe";
-import { assertHasUser } from "../../types";
 import keys from "../config/keys";
+import requireLoginMiddleware from "../middlewares/requireLogin";
+import { assertHasUser } from "../types";
+import types from "../types/express";
 
 const stripe = new Stripe(keys.stripeSecretKey, { apiVersion: "2023-08-16" });
 
 export const billingRoutes = (app: Express) => {
-  app.post("/api/stripe", async (req, res) => {
+  app.post("/api/stripe", requireLoginMiddleware, async (req, res) => {
     assertHasUser(req);
 
     const charge = await stripe.charges.create({

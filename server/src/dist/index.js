@@ -34,7 +34,7 @@ if (process.env.NODE_ENV === "production") {
     // doesn't recognize the route
     app.get("*", (req, res) => {
         console.log("prod");
-        res.sendFile(path_1.default.resolve(__dirname, "client", "build", "index.html"));
+        res.sendFile(path_1.default.resolve(__dirname, "../../client", "build", "index.html"));
     });
 }
 const PORT = process.env.PORT || 5000;

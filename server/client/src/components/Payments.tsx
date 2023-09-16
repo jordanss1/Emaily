@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import StripeCheckout from "react-stripe-checkout";
 import { AppThunkDispatch } from "../app/store";
 import { handleToken } from "../features/auth/authSlice";
+import types from "../types/react-stripe-checkout";
 
 const Payments = (): ReactElement => {
   const dispatch = useDispatch<AppThunkDispatch>();

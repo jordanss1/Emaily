@@ -11,7 +11,5 @@ export const axiosFetchUser = async (): Promise<User | undefined> => {
 export const axiosSendToken = async (token: Token): Promise<User> => {
   const { data } = await axios.post("/api/stripe", token);
 
-  console.log(data);
-
   return data;
 };

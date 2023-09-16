@@ -8,6 +8,7 @@ const cookie_session_1 = __importDefault(require("cookie-session"));
 const express_1 = __importDefault(require("express"));
 const mongoose_1 = require("mongoose");
 const passport_1 = __importDefault(require("passport"));
+const path_1 = __importDefault(require("path"));
 const keys_1 = __importDefault(require("./config/keys"));
 require("./models/User");
 const authRoutes_1 = require("./routes/authRoutes");
@@ -25,5 +26,15 @@ app.use(passport_1.default.initialize());
 app.use(passport_1.default.session());
 (0, billingRoutes_1.billingRoutes)(app);
 (0, authRoutes_1.googleAuthRoutes)(app);
+if (process.env.NODE_ENV === "production") {
+    // express will serve client assets such as
+    // main.js or main.css files
+    app.use(express_1.default.static("client/build"));
+    // express will serve up index.html if it
+    // doesn't recognize the route
+    app.get("*", (req, res) => {
+        res.sendFile(path_1.default.resolve(__dirname, "client", "build", "index.html"));
+    });
+}
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);

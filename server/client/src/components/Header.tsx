@@ -25,6 +25,7 @@ const Header = (): ReactElement => {
             <li>
               <Payments />
             </li>
+            <li style={{ padding: "0 10px" }}>Credits: {user.credits}</li>
             <li>
               <a href="/api/logout">Logout</a>
             </li>

@@ -1,6 +1,6 @@
 import bodyParser from "body-parser";
 import cookieSession from "cookie-session";
-import express, { Express } from "express";
+import express, { Express, Request, Response } from "express";
 import { connect } from "mongoose";
 import passport from "passport";
 import path from "path";
@@ -40,9 +40,7 @@ if (process.env.NODE_ENV === "production") {
 
   // express will serve up index.html if it
   // doesn't recognize the route
-  app.get("*", (req, res) => {
-    console.log("prod");
-
+  app.get("*", (req: Request, res: Response) => {
     res.sendFile(
       path.resolve(__dirname, "../../client", "build", "index.html")
     );

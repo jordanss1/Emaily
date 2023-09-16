@@ -15,7 +15,7 @@ const googleAuthRoutes = (app) => {
         req.logOut({}, () => { });
         res.redirect("/");
     });
-    app.get("/api/current_user", requireLogin_1.default, (req, res) => {
+    app.get("/api/current_user", (req, res) => {
         res.send(req.user);
     });
 };

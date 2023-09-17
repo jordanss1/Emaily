@@ -7,7 +7,7 @@ import types from "../types/express";
 
 const stripe = new Stripe(keys.stripeSecretKey, { apiVersion: "2023-08-16" });
 
-export const billingRoutes = (app: Express) => {
+const billingRoutes = (app: Express) => {
   app.post("/api/stripe", requireLoginMiddleware, async (req, res) => {
     assertHasUser(req);
 
@@ -25,3 +25,5 @@ export const billingRoutes = (app: Express) => {
     res.send(user);
   });
 };
+
+export default billingRoutes;

@@ -2,7 +2,7 @@ import { Express } from "express";
 import passport from "passport";
 import requireLoginMiddleware from "../middlewares/requireLogin";
 
-export const googleAuthRoutes = (app: Express) => {
+const googleAuthRoutes = (app: Express) => {
   app.get(
     "/auth/google",
     passport.authenticate("google", { scope: ["profile", "email"] })
@@ -25,3 +25,5 @@ export const googleAuthRoutes = (app: Express) => {
     res.send(req.user);
   });
 };
+
+export default googleAuthRoutes;

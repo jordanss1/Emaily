@@ -10,9 +10,11 @@ const mongoose_1 = require("mongoose");
 const passport_1 = __importDefault(require("passport"));
 const path_1 = __importDefault(require("path"));
 const keys_1 = __importDefault(require("./config/keys"));
+require("./models/Survey");
 require("./models/User");
-const authRoutes_1 = require("./routes/authRoutes");
-const billingRoutes_1 = require("./routes/billingRoutes");
+const authRoutes_1 = __importDefault(require("./routes/authRoutes"));
+const billingRoutes_1 = __importDefault(require("./routes/billingRoutes"));
+const surveyRoutes_1 = __importDefault(require("./routes/surveyRoutes"));
 require("./services/passport");
 const { mongoURI, cookieKey } = keys_1.default;
 (0, mongoose_1.connect)(mongoURI);
@@ -24,8 +26,9 @@ app.use((0, cookie_session_1.default)({
 }));
 app.use(passport_1.default.initialize());
 app.use(passport_1.default.session());
-(0, billingRoutes_1.billingRoutes)(app);
-(0, authRoutes_1.googleAuthRoutes)(app);
+(0, billingRoutes_1.default)(app);
+(0, authRoutes_1.default)(app);
+(0, surveyRoutes_1.default)(app);
 if (process.env.NODE_ENV === "production") {
     // express will serve client assets such as
     // main.js or main.css files

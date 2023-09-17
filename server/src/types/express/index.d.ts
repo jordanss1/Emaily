@@ -1,6 +1,6 @@
 import { Express } from "express";
 
-import { Document } from "mongoose";
+import { Document, ObjectId } from "mongoose";
 
 declare global {
   export namespace Express {

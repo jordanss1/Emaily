@@ -5,9 +5,11 @@ import { connect } from "mongoose";
 import passport from "passport";
 import path from "path";
 import keys from "./config/keys";
+import "./models/Survey";
 import "./models/User";
-import { googleAuthRoutes } from "./routes/authRoutes";
-import { billingRoutes } from "./routes/billingRoutes";
+import googleAuthRoutes from "./routes/authRoutes";
+import billingRoutes from "./routes/billingRoutes";
+import surveyRoutes from "./routes/surveyRoutes";
 import "./services/passport";
 
 const { mongoURI, cookieKey } = keys;
@@ -32,6 +34,8 @@ app.use(passport.session());
 billingRoutes(app);
 
 googleAuthRoutes(app);
+
+surveyRoutes(app);
 
 if (process.env.NODE_ENV === "production") {
   // express will serve client assets such as

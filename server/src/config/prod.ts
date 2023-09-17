@@ -10,7 +10,10 @@ const keys = {
   stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
 
   stripeSecretKey: process.env.STRIPE_SECRET_KEY,
-};
 
+  mailgunKey: process.env.MAILGUN_KEY,
+
+  mailgunDomain: process.env.MAILGUN_DOMAIN,
+};
 
 export default keys;

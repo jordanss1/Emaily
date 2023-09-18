@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 const keys = {
     googleClientID: process.env.GOOGLE_CLIENT_ID,
     googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -10,4 +8,4 @@ const keys = {
     mailgunKey: process.env.MAILGUN_KEY,
     mailgunDomain: process.env.MAILGUN_DOMAIN,
 };
-exports.default = keys;
+export default keys;

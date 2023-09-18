@@ -1,14 +1,9 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const prod_1 = __importDefault(require("./prod"));
+import prodKeys from "./prod";
 let keys;
 if (process.env.NODE_ENV === "production") {
-    keys = prod_1.default;
+    keys = prodKeys;
 }
 else {
     keys = require("./dev");
 }
-exports.default = keys;
+export default keys;

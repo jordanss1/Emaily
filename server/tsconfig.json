@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "module": "ESNext",
+    "module": "CommonJS",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "strict": true,
     "noUncheckedIndexedAccess": true,
@@ -9,7 +9,6 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "types": ["node"],
-    "moduleResolution": "Node",
     /* Bundler mode */
     "resolveJsonModule": true,
     "isolatedModules": true,

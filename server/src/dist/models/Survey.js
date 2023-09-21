@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.surveySchema = void 0;
-var mongoose_1 = require("mongoose");
-var Recipient_1 = require("./Recipient");
+const mongoose_1 = require("mongoose");
+const Recipient_1 = require("./Recipient");
 exports.surveySchema = new mongoose_1.Schema({
     title: { required: true, type: String },
     body: { required: true, type: String },

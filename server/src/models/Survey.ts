@@ -1,4 +1,4 @@
-import { InferSchemaType, Schema, model } from "mongoose";
+import { InferSchemaType, Schema, Types, model } from "mongoose";
 import { RecipientSchemaType, recipientSchema } from "./Recipient";
 
 export const surveySchema = new Schema({
@@ -8,7 +8,7 @@ export const surveySchema = new Schema({
   recipients: [recipientSchema],
   yes: { required: true, type: Number, default: 0 },
   no: { required: true, type: Number, default: 0 },
-  _user: { type: String, ref: "User", required: true },
+  _user: { type: Types.ObjectId, ref: "User", required: true },
   dateSent: { type: Number, required: true },
   lastResponded: { type: Date },
 });

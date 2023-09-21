@@ -1,3 +1,5 @@
+import keys from "../../config/keys";
+
 const surveyTemplate = (body: string): string => {
   return `
   <html>
@@ -7,8 +9,8 @@ const surveyTemplate = (body: string): string => {
         <p>Please answer the following question:</p>
         <p>${body}</p>
         <div>
-          <a href="http://localhost:3000">Yes</a>
-          <a href="http://localhost:3000">No</a>
+          <a href="${keys.redirectDomain}/api/surveys/thanks">Yes</a>
+          <a href="${keys.redirectDomain}/api/surveys/thanks">No</a>
         </div>
       </div>
     </body>

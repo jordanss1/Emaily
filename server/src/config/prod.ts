@@ -14,6 +14,8 @@ const keys = {
   mailgunKey: process.env.MAILGUN_KEY,
 
   mailgunDomain: process.env.MAILGUN_DOMAIN,
+
+  redirectDomain: process.env.REDIRECT_DOMAIN,
 };
 
 export default keys;

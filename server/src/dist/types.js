@@ -1,15 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.assertUserHasId = exports.assertHasUser = void 0;
-const assertHasUser = (req) => {
+exports.assertUserOrUserProps = void 0;
+const assertUserOrUserProps = (req, props) => {
     if (typeof req.user === "undefined") {
         throw new Error("Request object not user type");
     }
-};
-exports.assertHasUser = assertHasUser;
-const assertUserHasId = (req) => {
-    if (typeof req.user?.id === "undefined") {
-        throw new Error("Id property is undefined on user");
+    if (props && props.some((prop) => typeof req.user?.[prop] === "undefined")) {
+        throw new Error("Property(ies) is/are undefined on user");
     }
 };
-exports.assertUserHasId = assertUserHasId;
+exports.assertUserOrUserProps = assertUserOrUserProps;

@@ -10,7 +10,7 @@ exports.surveySchema = new mongoose_1.Schema({
     recipients: [Recipient_1.recipientSchema],
     yes: { required: true, type: Number, default: 0 },
     no: { required: true, type: Number, default: 0 },
-    _user: { type: String, ref: "User", required: true },
+    _user: { type: mongoose_1.Types.ObjectId, ref: "User", required: true },
     dateSent: { type: Number, required: true },
     lastResponded: { type: Date },
 });

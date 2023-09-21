@@ -9,5 +9,6 @@ const keys = {
     stripeSecretKey: process.env.STRIPE_SECRET_KEY,
     mailgunKey: process.env.MAILGUN_KEY,
     mailgunDomain: process.env.MAILGUN_DOMAIN,
+    redirectDomain: process.env.REDIRECT_DOMAIN,
 };
 exports.default = keys;

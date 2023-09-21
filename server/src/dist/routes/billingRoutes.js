@@ -10,7 +10,7 @@ const types_1 = require("../types");
 const stripe = new stripe_1.default(keys_1.default.stripeSecretKey, { apiVersion: "2023-08-16" });
 const billingRoutes = (app) => {
     app.post("/api/stripe", requireLogin_1.default, async (req, res) => {
-        (0, types_1.assertHasUser)(req);
+        (0, types_1.assertUserOrUserProps)(req);
         const charge = await stripe.charges.create({
             amount: 500,
             currency: "USD",

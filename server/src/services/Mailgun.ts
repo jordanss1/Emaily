@@ -35,9 +35,8 @@ class MailgunMailer {
   }
 
   async send() {
-    const resp = await mailgun.messages().send(this.data);
-    return resp;
-  }
+    return await mailgun.messages().send(this.data);
+    }
 }
 
 export default MailgunMailer;

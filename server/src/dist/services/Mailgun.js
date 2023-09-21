@@ -23,8 +23,7 @@ class MailgunMailer {
         return recipients.map(({ email }) => email).join(",");
     }
     async send() {
-        const resp = await mailgun.messages().send(this.data);
-        return resp;
+        return await mailgun.messages().send(this.data);
     }
 }
 exports.default = MailgunMailer;

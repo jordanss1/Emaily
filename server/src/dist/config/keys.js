@@ -9,6 +9,6 @@ if (process.env.NODE_ENV === "production") {
     keys = prod_1.default;
 }
 else {
-    keys = require("./dev");
+    keys = require("./dev").default;
 }
 exports.default = keys;

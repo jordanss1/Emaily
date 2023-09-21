@@ -9,7 +9,8 @@ import {
   SurveySaveType,
   SurveyType,
 } from "../models/Survey";
-import mailgun from "../services/mailgun";
+import MailgunMailer from "../services/Mailgun";
+import surveyTemplate from "../services/emailTemplates/surveyTemplate";
 import { assertUserHasId } from "../types";
 import types from "../types/express";
 
@@ -26,7 +27,7 @@ const surveyRoutes = (app: Express) => {
     ) => {
       assertUserHasId(req);
 
-      const { title, subject, body, recipients } = req.body;
+      const { title, subject, body, recipients }: SurveyRequestType = req.body;
 
       const survey = await new Survey<SurveySaveType>({
         _user: req.user?.id,
@@ -35,9 +36,19 @@ const surveyRoutes = (app: Express) => {
         body,
         recipients: recipients
           .split(",")
-          .map((email: string) => ({ email: email.trim() })),
+          .map((email: string) => ({ email: email.trim(), responded: false })),
         dateSent: Date.now(),
       }).save();
+
+      const mailer = new MailgunMailer(
+        survey.subject,
+        survey.recipients,
+        surveyTemplate(survey.body)
+      );
+
+      const mailerResponse = await mailer.send();
+
+      console.log(mailerResponse);
     }
   );
 

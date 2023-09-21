@@ -1,5 +1,5 @@
 import { InferSchemaType, Schema, model } from "mongoose";
-import { recipientSchema } from "./Recipient";
+import { RecipientSchemaType, recipientSchema } from "./Recipient";
 
 export const surveySchema = new Schema({
   title: { required: true, type: String },
@@ -15,7 +15,10 @@ export const surveySchema = new Schema({
 
 export type SurveyType = InferSchemaType<typeof surveySchema>;
 
-export type SurveySaveType = Omit<SurveyType, "yes" | "no" | "lastResponded">;
+export interface SurveySaveType
+  extends Omit<SurveyType, "yes" | "no" | "lastResponded" | "recipients"> {
+  recipients: RecipientSchemaType[];
+}
 
 export interface SurveyRequestType
   extends Pick<SurveyType, "subject" | "title" | "body"> {

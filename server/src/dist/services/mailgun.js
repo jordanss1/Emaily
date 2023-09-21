@@ -9,4 +9,22 @@ const mailgun = new mailgun_js_1.default({
     apiKey: keys_1.default.mailgunKey,
     domain: keys_1.default.mailgunDomain,
 });
-exports.default = mailgun;
+class MailgunMailer {
+    data;
+    constructor(subject, recipients, content) {
+        this.data = {
+            from: "no-reply@YOUR_ADDRESS.com",
+            to: this.formatAddresses(recipients),
+            subject: subject,
+            html: content,
+        };
+    }
+    formatAddresses(recipients) {
+        return recipients.map(({ email }) => email).join(",");
+    }
+    async send() {
+        const resp = await mailgun.messages().send(this.data);
+        return resp;
+    }
+}
+exports.default = MailgunMailer;

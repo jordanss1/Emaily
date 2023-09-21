@@ -6,7 +6,7 @@ let keys: KeysType;
 if (process.env.NODE_ENV === "production") {
   keys = prodKeys as KeysType;
 } else {
-  keys = require("./dev");
+  keys = require("./dev").default;
 }
 
 export default keys;

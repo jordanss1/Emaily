@@ -10,7 +10,7 @@ export const surveySchema = new Schema({
   no: { required: true, type: Number, default: 0 },
   _user: { type: String, ref: "User", required: true },
   dateSent: { type: Number, required: true },
-  lastResponded: { type: Date, required: true },
+  lastResponded: { type: Date },
 });
 
 export type SurveyType = InferSchemaType<typeof surveySchema>;

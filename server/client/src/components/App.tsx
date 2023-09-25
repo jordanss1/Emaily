@@ -3,10 +3,11 @@ import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { AppThunkDispatch } from "../app/store";
 import { fetchUser } from "../features/auth/authSlice";
+import "../styles/App.css";
 import Dashboard from "./Dashboard";
 import Header from "./Header";
 import Landing from "./Landing";
-import SurveyNew from "./SurveyNew";
+import SurveyNew from "./Surveys/SurveyNew";
 
 const App = (): ReactElement => {
   const dispatch = useDispatch<AppThunkDispatch>();

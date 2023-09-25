@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+.error-input,
+.error-input:focus {
+  border-bottom: 1px red solid !important;
+  box-shadow: none !important;
+}
+.error-textarea,
+.error-textarea:focus {
+  border: 1px red solid !important;
+  box-shadow: none !important;
+}
+
+.error-text {
+  color: red;
+  padding-left: 5px;
+  font-size: 13px;
+}

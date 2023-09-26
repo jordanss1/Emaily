@@ -29,7 +29,7 @@ const surveyRoutes = (app) => {
                 .map((email) => ({ email: email.trim(), responded: false })),
             dateSent: Date.now(),
         });
-        const mailer = new Mailgun_1.default(survey.subject, survey.recipients, (0, surveyTemplate_1.default)(survey.body));
+        const mailer = new Mailgun_1.default(survey.subject, survey.recipients, (0, surveyTemplate_1.default)(survey));
         try {
             await mailer.send();
             await survey.save();
@@ -45,8 +45,26 @@ const surveyRoutes = (app) => {
     app.get("/api/surveys/thanks", (req, res) => {
         res.send("Thanks for voting!");
     });
-    app.post("/api/surveys/webhook", body_parser_1.default.urlencoded(), (req, res) => {
-        const p = new path_parser_1.Path("/api/survey/:surveyId/:choice");
+    app.post("/api/surveys/webhooks", body_parser_1.default.urlencoded(), (req, res) => {
+        const p = new path_parser_1.Path("/api/surveys/:surveyId/:choice");
+        const { recipient, event, url } = req.body["event-data"];
+        const match = p.test(new URL(url).pathname);
+        if (match && event === "clicked") {
+            // Survey.updateOne(
+            //   {
+            //     _id: match.surveyId,
+            //     recipients: {
+            //       $elemMatch: { email: recipient, responded: false },
+            //     },
+            //   },
+            //   {
+            //     $inc: { [match.choice]: 1 },
+            //     $set: { "recipients.$.responded": true },
+            //     lastResponded: new Date(),
+            //   }
+            // ).exec();
+        }
+        res.send({});
     });
 };
 exports.default = surveyRoutes;

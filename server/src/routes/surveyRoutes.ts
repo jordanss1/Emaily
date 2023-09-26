@@ -47,7 +47,7 @@ const surveyRoutes = (app: Express) => {
       const mailer = new MailgunMailer(
         survey.subject,
         survey.recipients,
-        surveyTemplate(survey.body)
+        surveyTemplate(survey)
       );
 
       try {
@@ -70,8 +70,30 @@ const surveyRoutes = (app: Express) => {
     res.send("Thanks for voting!");
   });
 
-  app.post("/api/surveys/webhook", bodyParser.urlencoded(), (req, res) => {
-    const p = new Path("/api/survey/:surveyId/:choice");
+  app.post("/api/surveys/webhooks", bodyParser.urlencoded(), (req, res) => {
+    const p = new Path("/api/surveys/:surveyId/:choice");
+
+    const { recipient, event, url } = req.body["event-data"];
+
+    const match = p.test(new URL(url).pathname);
+
+    if (match && event === "clicked") {
+      // Survey.updateOne(
+      //   {
+      //     _id: match.surveyId,
+      //     recipients: {
+      //       $elemMatch: { email: recipient, responded: false },
+      //     },
+      //   },
+      //   {
+      //     $inc: { [match.choice]: 1 },
+      //     $set: { "recipients.$.responded": true },
+      //     lastResponded: new Date(),
+      //   }
+      // ).exec();
+    }
+
+    res.send({});
   });
 };
 

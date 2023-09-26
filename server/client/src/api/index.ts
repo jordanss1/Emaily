@@ -15,7 +15,7 @@ export const axiosSendToken = async (token: Token): Promise<User> => {
   return data;
 };
 
-export const axiosSendSurvey = async (survey: SurveyType) => {
+export const axiosSendSurvey = async (survey: SurveyType): Promise<User> => {
   const { data } = await axios.post("/api/surveys", survey);
 
   return data;

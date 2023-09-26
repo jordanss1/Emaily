@@ -9,16 +9,16 @@ import { axiosFetchUser, axiosSendToken } from "../../api";
 import { StateType } from "../../app/store";
 import { User } from "../../types";
 
-export const fetchUser = createAsyncThunk(
+export const fetchUser = createAsyncThunk<User | undefined>(
   "auth/fetchUser",
-  async (): Promise<User | undefined> => {
+  async () => {
     return await axiosFetchUser();
   }
 );
 
-export const handleToken = createAsyncThunk(
+export const handleToken = createAsyncThunk<User, Token>(
   "auth/fetchUser",
-  async (token: Token): Promise<User> => {
+  async (token) => {
     return await axiosSendToken(token);
   }
 );

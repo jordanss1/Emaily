@@ -3,7 +3,6 @@ import { ReactElement, useRef } from "react";
 import { Link } from "react-router-dom";
 import { SurveyType } from "../../schemas";
 import CustomInput from "../CustomInput";
-import CustomTextArea from "../CustomTextArea";
 import { fields } from "./formFields";
 
 interface SurveyFormProps {
@@ -24,32 +23,22 @@ const SurveyForm = ({ onNext, props }: SurveyFormProps): ReactElement => {
     }
   };
 
-  const renderContent = () => {
-    return fields.map(({ name, label }) => {
-      if (name === "body")
-        <CustomTextArea
-          key={name}
-          name={name}
-          label={label}
-          nextPressed={nextPressed}
-        />;
-
-      return (
-        <CustomInput
-          key={name}
-          name={name}
-          label={label}
-          type="text"
-          nextPressed={nextPressed}
-        />
-      );
-    });
-  };
+  const renderContent = fields.map(({ name, label }) => {
+    return (
+      <CustomInput
+        key={name}
+        name={name}
+        label={label}
+        type="text"
+        nextPressed={nextPressed}
+      />
+    );
+  });
 
   return (
     <Form>
       <div style={{ padding: "10px" }}>
-        {renderContent()}
+        {renderContent}
         <div style={{ padding: "10px 0" }}>
           <Link to="/surveys" className="red btn-flat left white-text">
             Cancel

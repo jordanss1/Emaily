@@ -8,7 +8,7 @@ const requireLogin_1 = __importDefault(require("../middlewares/requireLogin"));
 const googleAuthRoutes = (app) => {
     app.get("/auth/google", passport_1.default.authenticate("google", { scope: ["profile", "email"] }));
     app.get("/auth/google/callback", passport_1.default.authenticate("google"), (req, res) => {
-        res.redirect("/surveys");
+        res.redirect("/");
     });
     app.get("/api/logout", requireLogin_1.default, (req, res) => {
         req.logOut({}, () => { });

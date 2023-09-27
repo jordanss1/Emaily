@@ -17,7 +17,7 @@ const surveyRoutes = (app) => {
         const surveys = await Survey.find({
             _user: req.user?._id,
         }).select(["-recipients", "-_user", "-_id"]);
-        res.send(surveys);
+        res.send(surveys.length ? surveys : false);
     });
     app.post("/api/surveys", requireLogin_1.default, requireCredits_1.default, async (req, res) => {
         (0, types_1.assertUserOrUserProps)(req, [

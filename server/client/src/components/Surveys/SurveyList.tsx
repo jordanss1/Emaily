@@ -30,23 +30,23 @@ const SurveyList = (): ReactElement => {
             </div>
           </div>
         );
-      }
-
-      return (
-        <>
-          <div style={{ textAlign: "center" }}>
-            <h1>Emaily</h1>
-            <p>Collect feedback from your users</p>
-          </div>
-          <div className="card blue-grey darken-1">
-            <div className="card-content white-text">
-              <span className="card-title">
-                Looks like you need to send some surveys!
-              </span>
+      } else {
+        return (
+          <>
+            <div style={{ textAlign: "center" }}>
+              <h1>Emaily</h1>
+              <p>Collect feedback from your users</p>
             </div>
-          </div>
-        </>
-      );
+            <div className="card darken-1">
+              <div className="card-content">
+                <span className="card-title">
+                  Looks like you need to send some surveys!
+                </span>
+              </div>
+            </div>
+          </>
+        );
+      }
     });
 
   return <div>{renderSurveys}</div>;

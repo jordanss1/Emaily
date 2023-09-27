@@ -34,7 +34,7 @@ const surveyReducer = createSlice({
       (action) => action.type.includes("surveys/getSurveys"),
       (state, action: PayloadAction<SurveyFetchType>) =>
         reducerMatcherFunction(action, () => {
-          state.surveys = [];
+          state.surveys = action.payload;
         })
     );
   },

@@ -1,11 +1,12 @@
 import { useFormikContext } from "formik";
 import { ReactElement } from "react";
 
-import { SurveyType } from "../../schemas";
+import { SurveyNewType } from "../../schemas";
 import { FieldsType, fields } from "./formFields";
 
 const SurveyFormReview = ({ onBack }: { onBack: () => void }): ReactElement => {
-  const { handleSubmit, values, isSubmitting } = useFormikContext<SurveyType>();
+  const { handleSubmit, values, isSubmitting } =
+    useFormikContext<SurveyNewType>();
 
   const renderEntries = fields.map(
     ({ label, name }: { label: string; name: FieldsType }) => {

@@ -38,7 +38,7 @@ const Header = (): ReactElement => {
     <nav>
       <div className="nav-wrapper">
         <Link
-          to={user ? "/surveys" : "/"}
+          to={"/"}
           style={{ cursor: "pointer", paddingLeft: "10px" }}
           className="left brand-logo"
         >

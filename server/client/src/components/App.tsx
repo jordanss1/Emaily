@@ -6,7 +6,6 @@ import { fetchUser } from "../features/auth/authSlice";
 import "../styles/App.css";
 import Dashboard from "./Dashboard";
 import Header from "./Header";
-import Landing from "./Landing";
 import SurveyNew from "./Surveys/SurveyNew";
 
 const App = (): ReactElement => {
@@ -20,8 +19,7 @@ const App = (): ReactElement => {
     <div className="container">
       <Header />
       <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/surveys" element={<Dashboard />} />
+        <Route path="/" element={<Dashboard />} />
         <Route path="/surveys/new" element={<SurveyNew />} />
       </Routes>
     </div>

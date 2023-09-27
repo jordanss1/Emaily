@@ -5,4 +5,14 @@ export type User = {
   __v: number;
 };
 
-
+export type SurveyFetchType =
+  | {
+      __v: number;
+      body: string;
+      dateSent: number;
+      no: number;
+      subject: string;
+      title: string;
+      yes: number;
+    }[]
+  | [];

@@ -16,6 +16,6 @@ export const surveySchema = yup.object().shape({
   recipients: yup.string().required("Recipients is a required field"),
 });
 
-export type SurveyType = yup.InferType<typeof surveySchema>;
+export type SurveyNewType = yup.InferType<typeof surveySchema>;
 
 export const emailSchema = yup.array().of(yup.string().email());

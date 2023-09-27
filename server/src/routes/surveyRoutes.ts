@@ -18,6 +18,14 @@ import types from "../types/express";
 const Survey = model<SurveyType>("surveys");
 
 const surveyRoutes = (app: Express) => {
+  app.get("/api/surveys", requireLoginMiddleware, async (req, res) => {
+    const surveys = await Survey.find<SurveyType>({
+      _user: req.user?._id,
+    }).select(["-recipients", "-_user", "-_id"]);
+
+    res.send(surveys);
+  });
+
   app.post(
     "/api/surveys",
     requireLoginMiddleware,
@@ -66,7 +74,7 @@ const surveyRoutes = (app: Express) => {
     }
   );
 
-  app.get("/api/surveys/thanks", (req, res) => {
+  app.get("/api/surveys/thanks/:surveyId/:choice", (req, res) => {
     res.send("Thanks for voting!");
   });
 
@@ -78,19 +86,19 @@ const surveyRoutes = (app: Express) => {
     const match = p.test(new URL(url).pathname);
 
     if (match && event === "clicked") {
-      // Survey.updateOne(
-      //   {
-      //     _id: match.surveyId,
-      //     recipients: {
-      //       $elemMatch: { email: recipient, responded: false },
-      //     },
-      //   },
-      //   {
-      //     $inc: { [match.choice]: 1 },
-      //     $set: { "recipients.$.responded": true },
-      //     lastResponded: new Date(),
-      //   }
-      // ).exec();
+      Survey.updateOne(
+        {
+          _id: match.surveyId,
+          recipients: {
+            $elemMatch: { email: recipient, responded: false },
+          },
+        },
+        {
+          $inc: { [match.choice]: 1 },
+          $set: { "recipients.$.responded": true },
+          lastResponded: new Date(),
+        }
+      ).exec();
     }
 
     res.send({});

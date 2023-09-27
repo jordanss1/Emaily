@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { AppThunkDispatch } from "../../app/store";
 import { sendSurvey } from "../../features/surveys/surveySlice";
-import { SurveyType, emailSchema, surveySchema } from "../../schemas";
+import { SurveyNewType, emailSchema, surveySchema } from "../../schemas";
 import SurveyForm from "./SurveyForm";
 import SurveyFormReview from "./SurveyFormReview";
 
@@ -14,7 +14,7 @@ const SurveyNew = (): ReactElement => {
   const navigate = useNavigate();
 
   const validateEmails = (recipients: string) => {
-    let errors: Partial<SurveyType> = {};
+    let errors: Partial<SurveyNewType> = {};
 
     const emailArray = recipients.split(",").map((email) => email.trim());
 
@@ -25,19 +25,19 @@ const SurveyNew = (): ReactElement => {
     return errors;
   };
 
-  const onSubmit: FormikConfig<SurveyType>["onSubmit"] = async (
+  const onSubmit: FormikConfig<SurveyNewType>["onSubmit"] = async (
     values,
     { setSubmitting }
   ) => {
     setSubmitting(true);
     await dispatch(sendSurvey(values));
     setSubmitting(false);
-    setTimeout(() => navigate("/surveys"), 500);
+    setTimeout(() => navigate("/"), 500);
   };
 
   const onClick = () => setFormReview((prev) => !prev);
 
-  const renderContent = (props: FormikProps<SurveyType>) =>
+  const renderContent = (props: FormikProps<SurveyNewType>) =>
     formReview ? (
       <SurveyFormReview onBack={onClick} />
     ) : (

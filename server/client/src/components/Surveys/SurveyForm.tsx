@@ -1,12 +1,12 @@
 import { Form, FormikProps } from "formik";
 import { ReactElement, useRef } from "react";
 import { Link } from "react-router-dom";
-import { SurveyType } from "../../schemas";
+import { SurveyNewType } from "../../schemas";
 import CustomInput from "../CustomInput";
 import { fields } from "./formFields";
 
 interface SurveyFormProps {
-  props: FormikProps<SurveyType>;
+  props: FormikProps<SurveyNewType>;
   onNext: () => void;
 }
 

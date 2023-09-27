@@ -11,11 +11,11 @@ const SurveyList = (): ReactElement => {
     dispatch(getSurveys());
   }, []);
 
-  const renderSurveys = surveys
-    .toSorted((a, b) => a.dateSent + b.dateSent)
-    .map(({ title, body, dateSent, yes, no }, i) => {
-      if (surveys.length) {
-        return (
+  const renderSurveys = () => {
+    if (surveys.length) {
+      surveys
+        .toSorted((a, b) => a.dateSent + b.dateSent)
+        .map(({ title, body, dateSent, yes, no }, i) => (
           <div className="card darken-1" key={i}>
             <div className="card-content">
               <span className="card-title">{title}</span>
@@ -29,27 +29,21 @@ const SurveyList = (): ReactElement => {
               <a>No: {no}</a>
             </div>
           </div>
-        );
-      } else {
-        return (
-          <>
-            <div style={{ textAlign: "center" }}>
-              <h1>Emaily</h1>
-              <p>Collect feedback from your users</p>
-            </div>
-            <div className="card darken-1">
-              <div className="card-content">
-                <span className="card-title">
-                  Looks like you need to send some surveys!
-                </span>
-              </div>
-            </div>
-          </>
-        );
-      }
-    });
+        ));
+    } else {
+      return (
+        <div style={{ textAlign: "center" }}>
+          <h1>Emaily</h1>
+          <p style={{ paddingBottom: "50px" }}>
+            Collect feedback from your users
+          </p>
+          <h5>Looks like you need to send some surveys!</h5>
+        </div>
+      );
+    }
+  };
 
-  return <div>{renderSurveys}</div>;
+  return <div>{renderSurveys()}</div>;
 };
 
 export default SurveyList;

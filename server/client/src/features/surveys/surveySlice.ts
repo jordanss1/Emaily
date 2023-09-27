@@ -3,7 +3,7 @@ import { axiosGetSurveys, axiosSendSurvey } from "../../api";
 import { StateType } from "../../app/store";
 import { SurveyNewType } from "../../schemas";
 import { SurveyFetchType, User } from "../../types";
-import { reducerMatcherFunction } from "../auth/authSlice";
+import { fetchUser, reducerMatcherFunction } from "../auth/authSlice";
 
 export const sendSurvey = createAsyncThunk<User, SurveyNewType>(
   "auth/fetchUser",
@@ -12,18 +12,22 @@ export const sendSurvey = createAsyncThunk<User, SurveyNewType>(
   }
 );
 
-export const getSurveys = createAsyncThunk<SurveyFetchType>(
+export const getSurveys = createAsyncThunk<SurveyFetchType, string>(
   "surveys/getSurveys",
-  async () => {
+  async (empty, { dispatch }) => {
+    if (!(await dispatch(fetchUser())).payload) {
+      return false;
+    }
+
     return await axiosGetSurveys();
   }
 );
 
 type SurveyStateType = {
-  surveys: SurveyFetchType;
+  surveys: SurveyFetchType | null;
 };
 
-const initialState: SurveyStateType = { surveys: [] };
+const initialState: SurveyStateType = { surveys: null };
 
 const surveyReducer = createSlice({
   name: "surveys",

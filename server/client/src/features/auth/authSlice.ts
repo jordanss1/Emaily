@@ -49,6 +49,7 @@ export const authSlice = createSlice({
         (action) => action.type.includes("auth/fetchUser"),
         (state, action: PayloadAction<User>) =>
           reducerMatcherFunction(action, () => {
+            console.log(action.payload);
             state.user = action.payload || false;
           })
       )

@@ -23,7 +23,7 @@ const surveyRoutes = (app: Express) => {
       _user: req.user?._id,
     }).select(["-recipients", "-_user", "-_id"]);
 
-    res.send(surveys);
+    res.send(surveys.length ? surveys : false);
   });
 
   app.post(

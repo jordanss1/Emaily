@@ -15,4 +15,4 @@ export type SurveyFetchType =
       title: string;
       yes: number;
     }[]
-  | [];
+  | false;
